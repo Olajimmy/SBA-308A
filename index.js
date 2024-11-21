@@ -10,16 +10,24 @@ console.log("connected!");
 async function dogs() {
   const response = await fetch(`https://dogapi.dog/api/v2/breeds`);
   const result = await response.json();
-
+  const ulTag = document.querySelector("ul");
   //console.log(result.data);
   const details = result.data;
   for (i = 0; i < details.length; i++) {
     console.log(details[i].id);
-    // const list = document.createElement("li");
-    // // const list = document.getElementById("listId");
-    // list.innerHTML = details[i].id;
+    const newList = document.createElement("li");
+    newList.textContent = details[i].id;
+    const ulList = document.querySelector("ul");
+    console.log(ulList);
+    ulList.appendChild(newList);
+
+    const list = document.querySelector("li");
+    console.log(list);
+    //list.textContent = details[i].id;
     // list.setAttribute("value", details.id);
-    // document.body.appendChild(details);
+    //document.querySelector("ul").appendChild(list);
+
+    //append(details);
     //console.log(details[i].attributes.name);
   }
 }
