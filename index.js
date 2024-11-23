@@ -39,6 +39,9 @@ console.log("connected!");
 const btn = document.getElementById("catButton");
 console.log(btn);
 btn.addEventListener("click", catAPI);
+const btn2 = document.getElementById("dogButton");
+console.log(btn2);
+btn2.addEventListener("click", dogName);
 
 //function aHandler(evt) {
 //console.log(evt);
@@ -51,16 +54,32 @@ async function catAPI() {
   console.log(result);
   const details = result;
   for (i = 0; i < details.length; i++) {
-    console.log(details[i].id);
+    //console.log(details[i].id);
     // const img = new Image();
     // img.src = data.imageUrl;
-    const innerDiv = document.createElement("div");
-    innerDiv.setAttribute("class", "myCatClass");
-    innerDiv.style.border = "1px solid black";
-    innerDiv.style.height = "100px";
-    innerDiv.style.width = "200px";
-    innerDiv.style.backgroundColor = "#adcbd1";
-    innerDiv.innerHTML = `id: ${details[i].id}, url ${details[i].url}`;
+    const imgDiv = document.createElement("div");
+    imgDiv.setAttribute("class", "picDiv");
+    imgDiv.style.border = "1px solid black";
+
+    //imgDiv.style.backgroundColor = "#adcbd1";
+    //textId.setAttribute
+    //text
+    const textId = document.createElement("h5");
+    textId.textContent = `${details[i].id}`;
+    //textId.style.position = "absolute";
+    textId.style.color = "white";
+    //=================
+    const image = document.createElement("img");
+    image.setAttribute("src", details[i].url);
+    // image.style.border = "1px solid black";
+    image.style.height = "100px";
+    image.style.width = "200px";
+    //image.style.backgroundColor = "#adcbd1";
+    imgDiv.appendChild(image);
+
+    imgDiv.appendChild(textId);
+    //image.style.textContent = `${details[i].id}`;
+    // innerDiv.innerHTML = `id: ${details[i].id}, url ${details[i].url}`;
 
     // main div container
     const outerDiv = document.getElementById("first");
@@ -74,8 +93,9 @@ async function catAPI() {
     //ulList.style.height=
     //ulList.style.justifyContent = "space-between";
     console.log(outerDiv);
-    outerDiv.appendChild(innerDiv);
+    outerDiv.appendChild(imgDiv);
   }
+  btn.disabled = true;
 }
 //}
 //aHandler();
@@ -112,8 +132,26 @@ async function dogName() {
     console.log(ulList2);
     ulList2.appendChild(newList);
   }
+  btn2.disabled = true;
 }
-dogName();
+// promise
+let myPromise = new Promise(function (myResolve, myReject) {
+  // "Producing Code" (May take some time)
+  const data = fetch("https://dog.ceo/api/breeds/image/random");
+  if (data === null) myResolve("okay"); // when successful
+
+  myReject(console.log("Oops, no result")); // when error
+});
+
+//"Consuming Code" (Must wait for a fulfilled Promise)
+myPromise
+  .then(function myResolve() {
+    /* code if successful */
+    console.log("i have result", myPromise);
+  })
+  .catch(function myReject() {
+    console.log("no results for real");
+  });
 
 // function dogDetails() {
 //   const newList = document.createElement("div");
