@@ -36,41 +36,96 @@ console.log("connected!");
 // }
 
 ///======================================================================
-async function dogs() {
+const btn = document.getElementById("catButton");
+console.log(btn);
+btn.addEventListener("click", catAPI);
+
+//function aHandler(evt) {
+//console.log(evt);
+async function catAPI() {
+  const response = await fetch(
+    `https://api.thecatapi.com/v1/images/search?limit=10`
+  );
+  const result = await response.json();
+  //const ulTag = document.querySelector("ul");
+  console.log(result);
+  const details = result;
+  for (i = 0; i < details.length; i++) {
+    console.log(details[i].id);
+    // const img = new Image();
+    // img.src = data.imageUrl;
+    const innerDiv = document.createElement("div");
+    innerDiv.setAttribute("class", "myCatClass");
+    innerDiv.style.border = "1px solid black";
+    innerDiv.style.height = "100px";
+    innerDiv.style.width = "200px";
+    innerDiv.style.backgroundColor = "#adcbd1";
+    innerDiv.innerHTML = `id: ${details[i].id}, url ${details[i].url}`;
+
+    // main div container
+    const outerDiv = document.getElementById("first");
+    //ulList.setAttribute("class", "catMainDiv");
+    outerDiv.style.border = "1px solid black";
+    outerDiv.style.display = "flex";
+    outerDiv.style.flexWrap = "wrap";
+    outerDiv.style.backgroundColor = "#003153";
+    outerDiv.style.justifyContent = "space-evenly";
+
+    //ulList.style.height=
+    //ulList.style.justifyContent = "space-between";
+    console.log(outerDiv);
+    outerDiv.appendChild(innerDiv);
+  }
+}
+//}
+//aHandler();
+//catAPI();
+
+//async await function
+async function dogName() {
   const response = await fetch(`https://dogapi.dog/api/v2/breeds`);
   const result = await response.json();
   //const ulTag = document.querySelector("ul");
   console.log(result.data);
   const details = result.data;
   for (i = 0; i < details.length; i++) {
-    console.log(details[i].id);
+    // console.log(details[i].attributes.name);
     const newList = document.createElement("div");
+    newList.setAttribute("class", "myClass");
     newList.style.border = "1px solid black";
-    newList.style.height = "100px";
+    newList.style.height = "200px";
     newList.style.width = "100px";
-    newList.style.backgroundColor = "#22779b";
-    newList.textContent = details[i].id;
+    newList.style.backgroundColor = "#adcbd1";
+    newList.textContent = ` ID: ${details[i].id} Name: ${details[i].attributes.name}  ${details[i].type}`;
+    // newElement.textContent = `Name: ${item.name}, Age: ${item.age}`;
+
     //dogs2();
-    const ulList = document.querySelector("div");
+    const ulList2 = document.getElementById("second");
+    ulList2.setAttribute("class", "dogMainDiv");
     // main div container
-    ulList.style.border = "1px solid black";
-    ulList.style.display = "flex";
-    //ulList.style.justifyContent = "space-between";
-    console.log(ulList);
-    ulList.appendChild(newList);
-
-    // const list = document.querySelector("li");
-    // console.log(list);
-    //list.textContent = details[i].id;
-    // list.setAttribute("value", details.id);
-    //document.querySelector("ul").appendChild(list);
-
-    //append(details);
-    //console.log(details[i].attributes.name);
+    ulList2.style.border = "1px solid black";
+    ulList2.style.display = "flex";
+    ulList2.style.flexWrap = "wrap";
+    // ulList2.style.padding = "10px";
+    ulList2.style.justifyContent = "space-evenly";
+    ulList2.style.backgroundColor = "#00b2b2";
+    console.log(ulList2);
+    ulList2.appendChild(newList);
   }
 }
-dogs();
+dogName();
 
+// function dogDetails() {
+//   const newList = document.createElement("div");
+//   newList.setAttribute("class", "dogDetailsClass");
+//   newList.style.border = "1px solid black";
+//   newList.style.height = "100px";
+//   newList.style.width = "100px";
+//   newList.style.backgroundColor = "#22779b";
+//   newList.textContent = dogId();
+//   newList.textContent = dogName();
+// }
+//dogDetails();
 //const detailsLen = details.length;
 //console.log(detailsLen);
 //looping through
