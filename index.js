@@ -1,4 +1,10 @@
+//import { data } from "jquery";
+
 console.log("connected!");
+
+// import { add, subtract } from "./mod.js";
+// console.log(add(2, 3)); // 5
+// console.log(subtract(5, 2)); // 3
 
 // JavaScript:
 // const newListItem = document.createElement("li");
@@ -42,61 +48,68 @@ btn.addEventListener("click", catAPI);
 const btn2 = document.getElementById("dogButton");
 console.log(btn2);
 btn2.addEventListener("click", dogName);
-
+import { catAPI } from "./mod.js";
+console.log(catAPI());
 //function aHandler(evt) {
 //console.log(evt);
-async function catAPI() {
-  const response = await fetch(
-    `https://api.thecatapi.com/v1/images/search?limit=10`
-  );
-  const result = await response.json();
-  //const ulTag = document.querySelector("ul");
-  console.log(result);
-  const details = result;
-  for (i = 0; i < details.length; i++) {
-    //console.log(details[i].id);
-    // const img = new Image();
-    // img.src = data.imageUrl;
-    const imgDiv = document.createElement("div");
-    imgDiv.setAttribute("class", "picDiv");
-    imgDiv.style.border = "1px solid black";
+// async function catAPI() {
+//   const response = await fetch(
+//     `https://api.thecatapi.com/v1/images/search?limit=10`
+//   );
+//   const result = await response.json();
+//   //const ulTag = document.querySelector("ul");
+//   console.log(result);
+//   const details = result;
+//   for (i = 0; i < details.length; i++) {
+//     //console.log(details[i].id);
+//     // const img = new Image();
+//     // img.src = data.imageUrl;
+//     const imgDiv = document.createElement("div");
+//     imgDiv.setAttribute("class", "picDiv");
+//     imgDiv.style.border = "1px solid black";
+//     imgDiv.style.backgroundColor = "#adcbd1";
 
-    //imgDiv.style.backgroundColor = "#adcbd1";
-    //textId.setAttribute
-    //text
-    const textId = document.createElement("h5");
-    textId.textContent = `${details[i].id}`;
-    //textId.style.position = "absolute";
-    textId.style.color = "white";
-    //=================
-    const image = document.createElement("img");
-    image.setAttribute("src", details[i].url);
-    // image.style.border = "1px solid black";
-    image.style.height = "100px";
-    image.style.width = "200px";
-    //image.style.backgroundColor = "#adcbd1";
-    imgDiv.appendChild(image);
+//     //imgDiv.style.backgroundColor = "#adcbd1";
+//     //textId.setAttribute
+//     //text
+//     const textId = document.createElement("h5");
+//     textId.textContent = `ID: ${details[i].id}`;
+//     //textId.style.position = "absolute";
+//     textId.style.color = "black";
+//     textId.style.backgroundColor = "#e5e5e5";
+//     //=================
+//     const image = document.createElement("img");
+//     image.setAttribute("src", details[i].url);
+//     // image.style.border = "1px solid black";
+//     image.style.height = "100px";
+//     image.style.width = "180px";
+//     image.style.backgroundColor = "white";
+//     imgDiv.appendChild(image);
 
-    imgDiv.appendChild(textId);
-    //image.style.textContent = `${details[i].id}`;
-    // innerDiv.innerHTML = `id: ${details[i].id}, url ${details[i].url}`;
+//     imgDiv.appendChild(textId);
+//     //image.style.textContent = `${details[i].id}`;
+//     // innerDiv.innerHTML = `id: ${details[i].id}, url ${details[i].url}`;
 
-    // main div container
-    const outerDiv = document.getElementById("first");
-    //ulList.setAttribute("class", "catMainDiv");
-    outerDiv.style.border = "1px solid black";
-    outerDiv.style.display = "flex";
-    outerDiv.style.flexWrap = "wrap";
-    outerDiv.style.backgroundColor = "#003153";
-    outerDiv.style.justifyContent = "space-evenly";
+//     // main div container
+//     const outerDiv = document.getElementById("first");
+//     //ulList.setAttribute("class", "catMainDiv");
+//     outerDiv.style.border = "1px solid black";
+//     outerDiv.style.display = "flex";
+//     outerDiv.style.flexWrap = "wrap";
+//     outerDiv.style.backgroundColor = "#003153";
+//     outerDiv.style.justifyContent = "space-evenly";
 
-    //ulList.style.height=
-    //ulList.style.justifyContent = "space-between";
-    console.log(outerDiv);
-    outerDiv.appendChild(imgDiv);
-  }
-  btn.disabled = true;
-}
+//     //ulList.style.height=
+//     //ulList.style.justifyContent = "space-between";
+//     console.log(outerDiv);
+//     outerDiv.appendChild(imgDiv);
+//   }
+//   btn.disabled = true;
+//   btn.textContent = "Explore The Retrieved Data";
+//   //btn.disabled = true;
+//   // btn.textContent = "This Button Can Only Be Used Once";
+// }
+//end============================================================
 //}
 //aHandler();
 //catAPI();
@@ -108,16 +121,16 @@ async function dogName() {
   //const ulTag = document.querySelector("ul");
   console.log(result.data);
   const details = result.data;
-  for (i = 0; i < details.length; i++) {
+  for (let i = 0; i < details.length; i++) {
     // console.log(details[i].attributes.name);
     const newList = document.createElement("div");
     newList.setAttribute("class", "myClass");
     newList.style.border = "1px solid black";
-    newList.style.height = "200px";
-    newList.style.width = "100px";
+    newList.style.height = "100px";
+    newList.style.width = "180px";
     newList.style.backgroundColor = "#adcbd1";
     newList.textContent = ` ID: ${details[i].id} Name: ${details[i].attributes.name}  ${details[i].type}`;
-    // newElement.textContent = `Name: ${item.name}, Age: ${item.age}`;
+    //newList.textContent = ` ID: ${details[i].attributes.name}`;
 
     //dogs2();
     const ulList2 = document.getElementById("second");
@@ -134,11 +147,27 @@ async function dogName() {
   }
   btn2.disabled = true;
 }
-// promise
+
+//
+// const axios = require("axios");
+
+// console.log(axios.isCancel("something"));
+//import axios from "axios";
+
+// axios
+//   .get("https://dogapi.dog/api/v2/breeds")
+//   .then((response) => {
+//     console.log(response.data); // Output the response data
+//   })
+//   .catch((error) => {
+//     console.error(error); // Handle errors
+//   });
+// // promise
 let myPromise = new Promise(function (myResolve, myReject) {
   // "Producing Code" (May take some time)
-  const data = fetch("https://dog.ceo/api/breeds/image/random");
-  if (data === null) myResolve("okay"); // when successful
+  const data = fetch(`https://api.thecatapi.com/v1/images/search?limit=10`);
+  //console.log(data);
+  if (data !== null) myResolve("okay"); // when successful
 
   myReject(console.log("Oops, no result")); // when error
 });
@@ -148,12 +177,24 @@ myPromise
   .then(function myResolve() {
     /* code if successful */
     console.log("i have result", myPromise);
+    // const data2 = myPromise.json();
+    // console.log(data2);
+
+    //console.log(data);
   })
+  .then(console.log(myPromise))
+
+  //if not fufilled
   .catch(function myReject() {
-    console.log("no results for real");
+    console.log("no results for real", myPromise);
   });
 
-// function dogDetails() {
+// let k = myPromise.length;
+// // console.log(k);
+// for (i = 0; i <= myPromise; i++) {
+//   console.log(myPromise[i]);
+// }
+// // function dogDetails() {
 //   const newList = document.createElement("div");
 //   newList.setAttribute("class", "dogDetailsClass");
 //   newList.style.border = "1px solid black";
