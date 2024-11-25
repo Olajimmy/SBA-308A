@@ -1,13 +1,15 @@
 // export const add = (a, b) => a + b;
 // export const subtract = (a, b) => a - b;
 
-async function catAPI() {
+export async function catAPI() {
+  const btn = document.getElementById("catButton");
+  console.log(btn);
   const response = await fetch(
     `https://api.thecatapi.com/v1/images/search?limit=10`
   );
   const result = await response.json();
   //const ulTag = document.querySelector("ul");
-  console.log(result);
+  //console.log(result);
   const details = result;
   for (let i = 0; i < details.length; i++) {
     //console.log(details[i].id);
@@ -17,6 +19,7 @@ async function catAPI() {
     imgDiv.setAttribute("class", "picDiv");
     imgDiv.style.border = "1px solid black";
     imgDiv.style.backgroundColor = "#adcbd1";
+    //imgDiv.style. = "rotateY(180deg)";
 
     //imgDiv.style.backgroundColor = "#adcbd1";
     //textId.setAttribute
@@ -47,6 +50,7 @@ async function catAPI() {
     outerDiv.style.flexWrap = "wrap";
     outerDiv.style.backgroundColor = "#003153";
     outerDiv.style.justifyContent = "space-evenly";
+    //outerDiv.style.justifyContent = "space-between";
 
     //ulList.style.height=
     //ulList.style.justifyContent = "space-between";
@@ -58,4 +62,4 @@ async function catAPI() {
   //btn.disabled = true;
   // btn.textContent = "This Button Can Only Be Used Once";
 }
-export { catAPI };
+//export { catAPI };

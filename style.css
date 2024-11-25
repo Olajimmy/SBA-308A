@@ -4,3 +4,13 @@
 body {
   background-color: antiquewhite;
 }
+button {
+  background-color: #a8dcd1;
+}
+
+button:hover {
+  background-color: aqua;
+}
+.exterior {
+  background-color: #6c8f5a;
+}
